@@ -9,12 +9,28 @@ use BotMan\BotMan\Cache\LaravelCache;
 
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('users.index');
+})->name('inicio');
 
-Route::get('/chat', function () {
-    return view('chat');
-});
+Route::get('/about', function () {
+    return view('users.about');
+})->name('about');
+
+Route::get('/repository', function () {
+    return view('dashboard.repositorio');
+})->name('repositorio');
+
+Route::get('/contact', function () {
+    return view('users.contacto');
+})->name('contacto');
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.registro');
+})->name('registro');
 
 Route::match(['get', 'post'], 'chat/botman', function () {
     $config = [];
@@ -27,4 +43,4 @@ Route::match(['get', 'post'], 'chat/botman', function () {
     })->middleware('web');
 
     $botman->listen();
-});
+})->name('chatbot');

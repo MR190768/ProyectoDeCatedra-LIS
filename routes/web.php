@@ -7,7 +7,7 @@ use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Cache\LaravelCache;
 
-
+//Vistas
 Route::get('/', function () {
     return view('users.index');
 })->name('inicio');
@@ -32,6 +32,7 @@ Route::get('/register', function () {
     return view('auth.registro');
 })->name('registro');
 
+//Ruta para el cahtbot
 Route::match(['get', 'post'], 'chat/botman', function () {
     $config = [];
 

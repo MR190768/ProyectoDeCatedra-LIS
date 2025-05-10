@@ -24,7 +24,7 @@
     <p>YO, <strong>{{$abName}}</strong> conocida por <strong>{{$abName}}</strong>, y por <strong>{{$abNameSol}}</strong>, 
         mayor de edad, Abogada, del Departamento de San Salvador, 
         portadora de mi Tarjeta de Identificación de Abogado número 
-         <strong>{{$abCodigo}}</strong> y con Número de Identificación Tributaria <strong>{{$NIT}}</strong>, 
+         <strong>{{$abCodigo}}</strong> y con Número de Identificación Tributaria <strong>{{$abNIT}}</strong>, 
         A usted con el debido respeto EXPONGO:</p>
 
     <p>Que vengo ante su respetable autoridad a mostrarme parte como abogada

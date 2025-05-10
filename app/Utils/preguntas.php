@@ -19,7 +19,7 @@ class preguntas extends Conversation
     protected $abName;
     protected $abNameSol;
     protected $abCodigo;
-    protected $NIT;
+    protected $abNIT;
     protected $imputado;
     protected $apoderado;
     protected $mes=[
@@ -39,16 +39,17 @@ class preguntas extends Conversation
     ];
 
 
-
+    //Todas las preguntas segun el mismo flujo lo que cambia es lo que preguntan y el dato que guardan
+    //Recibe un array con el flujo de preguntas y un callback para ejecutar al final 
     public function preguntarNombre($preguntas, $callback)
     {
-        $this->ask('¿Cuál es tu nombre?', function (Answer $answer) use ($preguntas, $callback) {
-            $this->nombre = $answer->getText();
-            $next = array_shift($preguntas);
-            if ($next !== null) {
-                $this->$next($preguntas, $callback);
-            } else {
-                $this->$callback();
+        $this->ask('¿Cuál es tu nombre?', function (Answer $answer) use ($preguntas, $callback) {   //Pregunta
+            $this->nombre = $answer->getText();                                                     //Guarda Respuesta
+            $next = array_shift($preguntas);                                                        //Obtiene la siguiente pregunta
+            if ($next !== null) {                                                                   //Si hay una siguiente pregunta
+                $this->$next($preguntas, $callback);                                                //Ejecuta la siguiente pregunta
+            } else {                                                                                //Si no hay siguiente pregunta
+                $this->$callback();                                                                 //Ejecuta el callback
             }
         });
     }
@@ -108,7 +109,7 @@ class preguntas extends Conversation
     public function preguntarNITAbogado($preguntas, $callback)
     {
         $this->ask('¿Cuál es NIT del abogado?', function (Answer $answer) use ($preguntas, $callback) {
-            $this->NIT = $answer->getText();
+            $this->abNIT = $answer->getText();
             $next = array_shift($preguntas);
             if ($next !== null) {
                 $this->$next($preguntas, $callback);
@@ -144,22 +145,10 @@ class preguntas extends Conversation
         });
     }
 
-    public function preguntarPeso($preguntas, $callback)
-    {
-        $this->ask('¿Cuál es tu peso?', function (Answer $answer) use ($preguntas, $callback) {
-            $this->peso = $answer->getText();
-            $next = array_shift($preguntas);
-            if ($next !== null) {
-                $this->$next($preguntas, $callback);
-            } else {
-                $this->$callback();
-            }
-        });
-    }
 
     public function preguntarJuzgadoDeIns($preguntas, $callback)
     {
-        $this->ask('¿En cuál JUZGADO ESPECIALIZADO DE INSTRUCCIÓN va dirigido?', function (Answer $answer) use ($preguntas, $callback) {
+        $this->ask('¿A cuál JUZGADO ESPECIALIZADO DE INSTRUCCIÓN va dirigido?', function (Answer $answer) use ($preguntas, $callback) {
             $this->ins = $answer->getText();
             $next = array_shift($preguntas);
             if ($next !== null) {
@@ -170,13 +159,15 @@ class preguntas extends Conversation
         });
     }
 
-    function PDFMDImputados()
+    //Genera el PDF y segun datos recopilados y plantilla elegida
+    //luego responde al usuario con un enlace para descargar del PDF
+    function PDFPoderImputados()
     {
         $datos = [
-            'abName' => $this->abName,
-            'abNameSol' => $this->abNameSol,
-            'abCodigo' => $this->abCodigo,
-            'NIT' => $this->NIT,
+            'abName' => $this->abName,                           
+            'abNameSol' => $this->abNameSol,                    
+            'abCodigo' => $this->abCodigo,                       
+            'abNIT' => $this->abNIT,
             'imputado' => $this->imputado,
             'ins' => $this->ins,
             'apoderado' => $this->apoderado,

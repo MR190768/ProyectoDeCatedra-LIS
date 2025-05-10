@@ -7,6 +7,7 @@ use App\Utils\preguntas;
 
 class prueba extends preguntas
 {
+    //array donde se elgien las preguntas que se van hacer y el flujo que va a seguir
     protected $dialogo = array(
         'preguntarJuzgadoDeIns',
         'preguntarSolteroNombreAbogado',
@@ -18,7 +19,8 @@ class prueba extends preguntas
 
     public function startConversacion()
     {
-        $this->preguntarNombreAbogado($this->dialogo,"PDFMDImputados");
+        $this->preguntarNombreAbogado($this->dialogo,"PDFPoderImputados"); //empieza el dialgo enviado el flujo de la conversacion
+                                                                           //y el callvack a ejecutar que es la generacion del PDF correspondiente
         
     }
     public function run()

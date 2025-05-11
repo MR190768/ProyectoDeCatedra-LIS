@@ -42,7 +42,8 @@ Route::get('/register', function () {
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 Route::post('/login', [LoginController::class, 'login'])->name('login.store');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
+Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 //Ruta para el cahtbot
 Route::match(['get', 'post'], 'chat/botman', function () {
   $config = [];

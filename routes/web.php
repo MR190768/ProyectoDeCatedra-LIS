@@ -6,42 +6,50 @@ use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Cache\LaravelCache;
+use App\Http\Controllers\Auth\RegisterController;
 
+
+use App\Http\Controllers\Auth\GoogleController;
+
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 //Vistas
 Route::get('/', function () {
-    return view('users.index');
+  return view('users.index');
 })->name('inicio');
 
 Route::get('/about', function () {
-    return view('users.about');
+  return view('users.about');
 })->name('about');
 
 Route::get('/repository', function () {
-    return view('dashboard.repositorio');
+  return view('dashboard.repositorio');
 })->name('repositorio');
 
 Route::get('/contact', function () {
-    return view('users.contacto');
+  return view('users.contacto');
 })->name('contacto');
 
 Route::get('/login', function () {
-    return view('auth.login');
+  return view('auth.login');
 })->name('login');
 
 Route::get('/register', function () {
-    return view('auth.registro');
-})->name('registro');
+  return view('auth.registro');
+})->name('register');
+
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 //Ruta para el cahtbot
 Route::match(['get', 'post'], 'chat/botman', function () {
-    $config = [];
+  $config = [];
 
-    DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
-    $botman = BotManFactory::create($config, new LaravelCache());
+  DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
+  $botman = BotManFactory::create($config, new LaravelCache());
 
-    $botman->hears('hola', function (BotMan $bot) {
-        $bot->startConversation(new \App\Conversations\prueba());
-    })->middleware('web');
+  $botman->hears('hola', function (BotMan $bot) {
+    $bot->startConversation(new \App\Conversations\prueba());
+  })->middleware('web');
 
-    $botman->listen();
+  $botman->listen();
 })->name('chatbot');

@@ -16,25 +16,27 @@ class GoogleController extends Controller
   public function handleGoogleCallback()
   {
     try {
-      $googleUser = Socialite::driver('google')->user();
+      $googleUser = Socialite::driver('google')
+        ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
+        ->user();
 
-      // Buscar o crear el usuario
+      // Buscar o crear el usuario en la base de datos
       $user = User::firstOrCreate(
-        ['email' => $googleUser->getEmail()],
+        ['email' => $googleUser->getEmail()], // Buscar por correo
         [
           'name' => $googleUser->getName(),
-          'email' => $googleUser->getEmail(),
-          'google_id' => $googleUser->getId(), // Guardar el ID de Google
-          'password' => bcrypt('google'), // Contraseña
+          'google_id' => $googleUser->getId(), // Guarda el ID de Google
+          'password' => bcrypt('google'), // Contraseña mock
         ]
       );
 
       // Iniciar sesión al usuario
       Auth::login($user);
 
+      // Redirigir al dashboard
       return redirect()->route('dashboard')->with('success', 'Inicio de sesión exitoso con Google.');
     } catch (\Exception $e) {
-      return redirect()->route('login')->with('error', 'Hubo un problema al iniciar sesión con Google.');
+      return redirect()->route('register')->with('error', 'Hubo un problema al iniciar sesión con Google.');
     }
   }
 }

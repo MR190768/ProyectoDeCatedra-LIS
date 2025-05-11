@@ -36,7 +36,7 @@ Route::get('/login', function () {
 
 Route::get('/register', function () {
   return view('auth.registro');
-})->name('register');
+})->name('registro');
 
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 

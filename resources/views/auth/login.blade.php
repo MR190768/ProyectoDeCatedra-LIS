@@ -125,7 +125,7 @@
 
             <!-- Registro -->
             <div class="text-center mt-5">
-              <p class="text-muted">¿No tiene cuenta? <a href="{{route('register')}}" class="text-primary">Regístrese
+              <p class="text-muted">¿No tiene cuenta? <a href="{{route('registro')}}" class="text-primary">Regístrese
                   aquí</a></p>
             </div>
           </form>

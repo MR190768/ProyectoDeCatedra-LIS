@@ -118,9 +118,7 @@
               <a href="#" class="btn btn-outline-primary btn-lg-square mx-2">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="{{ route('auth.google') }}" class="btn btn-danger btn-block py-3 mb-4">
-                <i class="fab fa-google mr-2"></i> Iniciar sesión con Google
-              </a>
+
             </div>
 
             <!-- Registro -->
@@ -129,9 +127,23 @@
                   aquí</a></p>
             </div>
           </form>
+          <a href="{{ route('auth.google') }}" class="btn btn-danger btn-block py-3 mb-4">
+            <i class="fab fa-google mr-2"></i> Iniciar sesión con Google
+          </a>
         </div>
       </div>
     </div>
+    @if(session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+  @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger">
+      {{ session('error') }}
+    </div>
+  @endif
   </div>
   <!-- Login Container End -->
   <footer>

@@ -36,7 +36,7 @@ class GoogleController extends Controller
       // Redirigir al dashboard
       return redirect()->route('dashboard')->with('success', 'Inicio de sesión exitoso con Google.');
     } catch (\Exception $e) {
-      return redirect()->route('register')->with('error', 'Hubo un problema al iniciar sesión con Google.');
+      return redirect()->route('login')->with('error', 'Hubo un problema al iniciar sesión con Google.');
     }
   }
 }

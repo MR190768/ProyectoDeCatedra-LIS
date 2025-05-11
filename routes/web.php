@@ -7,6 +7,7 @@ use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Cache\LaravelCache;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 use App\Http\Controllers\Auth\GoogleController;
@@ -39,6 +40,8 @@ Route::get('/register', function () {
 })->name('registro');
 
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/login', [LoginController::class, 'login'])->name('login.store');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //Ruta para el cahtbot
 Route::match(['get', 'post'], 'chat/botman', function () {

@@ -16,7 +16,7 @@ class LoginController extends Controller
     ]);
 
     if (Auth::attempt($credentials, $request->remember)) {
-      return redirect()->route('contact')->with('success', 'Inicio de sesión exitoso.');
+      return redirect()->route('contacto')->with('success', 'Inicio de sesión exitoso.');
     }
 
     // Si falla, redirige de vuelta con un mensaje de error

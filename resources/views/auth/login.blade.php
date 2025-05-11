@@ -81,51 +81,41 @@
             <p>Acceda a su cuenta para continuar</p>
           </div>
 
-          <form>
+
+          <form action="{{ route('login.store') }}" method="POST">
+            @csrf
             <!-- Email -->
             <div class="form-group mb-4">
               <label class="form-label text-primary"><i class="fas fa-envelope mr-2"></i>Correo Electrónico</label>
-              <input type="email" class="form-control form-input py-3" placeholder="nombre@ejemplo.com" required>
+              <input type="email" name="email" class="form-control form-input py-3" placeholder="nombre@ejemplo.com"
+                value="{{ old('email') }}" required>
+              @error('email')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
             </div>
 
             <!-- Contraseña -->
             <div class="form-group mb-4">
               <label class="form-label text-primary"><i class="fas fa-lock mr-2"></i>Contraseña</label>
-              <input type="password" class="form-control form-input py-3" placeholder="••••••••" required>
+              <input type="password" name="password" class="form-control form-input py-3" placeholder="••••••••"
+                required>
+              @error('password')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
             </div>
 
-            <!-- Recuerdame y Olvidé contraseña -->
+            <!-- Recuerdame -->
             <div class="d-flex justify-content-between mb-4">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="remember">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember">
                 <label class="form-check-label text-muted" for="remember">Recuérdame</label>
               </div>
-              <a href="#" class="text-primary">¿Olvidó su contraseña?</a>
             </div>
 
             <!-- Botón Login -->
             <button type="submit" class="btn btn-primary btn-block py-3 mb-4">
               <i class="fas fa-sign-in-alt mr-2"></i>Ingresar
             </button>
-
-            <!-- Divisor -->
-            <div class="divider d-flex align-items-center mb-4">
-              <p class="text-center text-muted mx-3 mb-0">O continuar con</p>
-            </div>
-
-            <!-- Social Login -->
-            <div class="social-login text-center">
-              <a href="#" class="btn btn-outline-primary btn-lg-square mx-2">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-
-            </div>
-
-            <!-- Registro -->
-            <div class="text-center mt-5">
-              <p class="text-muted">¿No tiene cuenta? <a href="{{route('registro')}}" class="text-primary">Regístrese
-                  aquí</a></p>
-            </div>
           </form>
           <a href="{{ route('auth.google') }}" class="btn btn-danger btn-block py-3 mb-4">
             <i class="fab fa-google mr-2"></i> Iniciar sesión con Google

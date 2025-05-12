@@ -46,19 +46,17 @@ Route::get('repository/categoria/{id}', [RepositorioController::class, 'show'])-
 
 Route::post('/contrato/generar', [ContratoController::class, 'generar'])->name('contrato.generar');
 
-
-
-// ====================
-// RUTAS PRIVADAS
-// ====================
-
-
 //Ruta para el chatbot
 Route::match(['get', 'post'], 'chat/botman', function () {
 $chat = new chat();
 $chat->startConversacion();
 
 })->name('chatbot');
+
+// ====================
+// RUTAS PRIVADAS
+// ====================
+
 
 Route::middleware('auth')->get('/perfil', [AdminController::class, 'perfil'])->name('perfil');
 

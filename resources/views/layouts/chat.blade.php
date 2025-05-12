@@ -1,7 +1,8 @@
 <script>
     var botmanWidget = {
-        aboutText: 'ChatBot Laravel',
-        introMessage: "✋ ¡Hola! Escribe 'hola' para comenzar",
+        aboutText: 'power by botman',
+        introMessage: "✋ ¡Hola! soy un bot que te ayudara a navegar por la pagina, si tienes alguna duda no dudes en preguntarme.",
+        title: "Asistente Virtual",
         chatServer: "{{route('chatbot')}}"
     };
 </script>

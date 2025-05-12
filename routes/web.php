@@ -1,17 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use BotMan\BotMan\BotMan;
-use BotMan\BotMan\BotManFactory;
-use BotMan\BotMan\Drivers\DriverManager;
-use BotMan\BotMan\Messages\Conversations\Conversation;
-use BotMan\BotMan\Cache\LaravelCache;
+use App\Conversations\chat;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 
-
-use App\Http\Controllers\Auth\GoogleController;
-/*
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 */
@@ -47,14 +41,7 @@ Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('
 Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 //Ruta para el cahtbot
 Route::match(['get', 'post'], 'chat/botman', function () {
-  $config = [];
+$chat = new chat();
+$chat->startConversacion();
 
-  DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
-  $botman = BotManFactory::create($config, new LaravelCache());
-
-  $botman->hears('hola', function (BotMan $bot) {
-    $bot->startConversation(new \App\Conversations\prueba());
-  })->middleware('web');
-
-  $botman->listen();
 })->name('chatbot');

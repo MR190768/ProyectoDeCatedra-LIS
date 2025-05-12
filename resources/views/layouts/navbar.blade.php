@@ -44,21 +44,30 @@
                         <a href="{{route('contacto')}}" class="nav-item nav-link">Contacto</a>
                     </div>
                     <div class="ml-auto">
-                        @guest
-                            <!-- Mostrar solo si el usuario NO está autenticado -->
+                        @auth
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->nombres }}
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    @if (Auth::user()->rol === 'admin')
+                                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Panel Admin</a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ route('perfil') }}">Ver Perfil</a>
+                                    @endif
+                                    <div class="dropdown-divider"></div>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @else
                             <a href="{{ route('login') }}" class="btn btn-outline-primary mr-2">Iniciar Sesión</a>
                             <a href="{{ route('registro') }}" class="btn btn-primary">Registrarse</a>
-                        @endguest
-
-                        @auth
-                            <!-- Mostrar solo si el usuario está autenticado -->
-                            <span class="mr-2">Hola, {{ Auth::user()->nombres }}</span>
-                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-outline-danger">Cerrar Sesión</button>
-                            </form>
                         @endauth
                     </div>
+
                 </div>
             </nav>
         </div>

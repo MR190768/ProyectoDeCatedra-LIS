@@ -11,7 +11,7 @@
         @include('layouts.navbar')
     </header>
     @yield('content')
-    @include('layouts.chat')
+        @include('layouts.chat') 
     <footer>
         @include('layouts.footer')
     </footer>

@@ -9,10 +9,7 @@
         "barryvdh/laravel-dompdf": "^3.1",
         "botman/botman": "^2.8",
         "botman/driver-web": "^1.5",
-<<<<<<< HEAD
         "genkovich/dialog-flow-bot-man-middleware": "^0.0.6",
-=======
->>>>>>> 690730e4c85634db58bd6268b7e0ab5d46f2dc5d
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",

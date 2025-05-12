@@ -23,7 +23,7 @@ class prueba extends preguntas
         );
 
         $i = 0;
-        $inicio = "Hola soy el aistente virtual de ACORPE, estas son al opciones para ti: ";
+        $inicio = "Estas son al opciones Disponibles: ";
         foreach ($ejemploArray as $opcion) {
             $inicio .= "<br>" . $i . ") " . $opcion;                                                                 //nombre del flujo de preguntas
             $i++;

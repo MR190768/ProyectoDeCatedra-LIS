@@ -42,4 +42,9 @@ class User extends Authenticatable
   {
     return $this->contrasena;
   }
+
+   public function descargas()
+    {
+        return $this->hasMany(Descarga::class);
+    }
 }

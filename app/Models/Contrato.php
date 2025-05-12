@@ -20,4 +20,9 @@ class Contrato extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function descargas()
+    {
+        return $this->hasMany(Descarga::class);
+    }
 }

@@ -21,15 +21,18 @@ class prueba extends preguntas
             'PoderImputado',
             'PoderFamiliar'
         );
-
+       
         $i = 0;
-        $inicio = "Estas son al opciones Disponibles: ";
+        $inicio = "Estas son al opciones Disponibles escriba el numero de la opcion: ";
         foreach ($ejemploArray as $opcion) {
             $inicio .= "<br>" . $i . ") " . $opcion;                                                                 //nombre del flujo de preguntas
             $i++;
         }
         $this->ask($inicio, function (Answer $answer) use ($ejemploArray) {
-
+            if(is_numeric($answer->getText()) == false) {
+                $this->say("Por favor ingrese un número válido");
+                return $this->opciones();
+            }
             $opcion = intval($answer->getText());                                                                          //nombre del flujo de preguntas
             $dialogo = json_decode(file_get_contents(storage_path('app/public/Dialogos/' . $ejemploArray[$opcion] . '.json')));
             $this->Dialogo($dialogo, $ejemploArray[$opcion]);

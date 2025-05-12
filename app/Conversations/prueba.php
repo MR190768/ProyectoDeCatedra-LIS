@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Conversations;
 
 use BotMan\BotMan\Messages\Incoming\Answer;

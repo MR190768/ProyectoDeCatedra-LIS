@@ -30,7 +30,7 @@ class docPDF{
         $pdf->setPaper('A4', 'portrait');                                 //configura el tamaño y orientacion del PDF
         $name='Reporte_'.time().'.pdf';                                   //nombre el archivo
         $path = storage_path('app/public/Docs/'.$name);                   //ruta donde se guardara el archivo
-        $pdf->save($path);                                                // guarda el archivo en la ruta especificada
+        $pdf->save($path);                                               // guarda el archivo en la ruta especificada
         return $name;
 
     }

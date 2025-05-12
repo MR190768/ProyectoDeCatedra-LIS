@@ -41,7 +41,8 @@ Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('
 Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 //Ruta para el cahtbot
 Route::match(['get', 'post'], 'chat/botman', function () {
-$chat = new chat();
-$chat->startConversacion();
-
+  $chat = new chat();
+  $chat->startConversacion();
 })->name('chatbot');
+
+

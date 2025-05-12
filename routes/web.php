@@ -1,15 +1,17 @@
 <?php
 
+use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\RepositorioController;
 use Illuminate\Support\Facades\Route;
 use App\Conversations\chat;
-use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
-/*
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-*/
-//Vistas
+
+
+// ====================
+// RUTAS PÚBLICAS
+// ====================
+
 Route::get('/', function () {
   return view('users.index');
 })->name('inicio');
@@ -18,9 +20,6 @@ Route::get('/about', function () {
   return view('users.about');
 })->name('about');
 
-Route::get('/repository', function () {
-  return view('dashboard.repositorio');
-})->name('repositorio');
 
 Route::get('/contact', function () {
   return view('users.contacto');
@@ -39,10 +38,28 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.store');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
+Route::get('/repository', [RepositorioController::class, 'index'])->name('repositorio');
+
+Route::get('repositoriy/categoria/{id}', [RepositorioController::class, 'show'])->name('repositorio.categoria');
+
+Route::post('/contrato/generar', [ContratoController::class, 'generar'])->name('contrato.generar');
+
+
+
+// ====================
+// RUTAS PRIVADAS
+// ====================
+
+
 //Ruta para el cahtbot
-Route::match(['get', 'post'], 'chat/botman', function () {
-  $chat = new chat();
-  $chat->startConversacion();
+Route::middleware('auth')->match(['get', 'post'], 'chat/botman', function () {
+$chat = new chat();
+$chat->startConversacion();
+
 })->name('chatbot');
 
+Route::middleware('auth')->get('/perfil', function () {
+    return view('users.perfil');
+})->name('perfil');
 

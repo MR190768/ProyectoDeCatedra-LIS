@@ -12,16 +12,21 @@ class User extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable;
 
+  public $timestamps = false;
+
   /**
    * The attributes that are mass assignable.
    *
    * @var array<int, string>
    */
   protected $fillable = [
-    'name',
-    'email',
-    'password',
-    'google_id',
+      'nombres',
+      'apellidos',
+      'email',
+      'contrasena',
+      'personal_path',
+      'tipo_usuario',
+      'google_id'
   ];
 
   /**
@@ -30,17 +35,11 @@ class User extends Authenticatable
    * @var array<int, string>
    */
   protected $hidden = [
-    'password',
-    'remember_token',
+    'contrasena',
   ];
 
-  /**
-   * The attributes that should be cast.
-   *
-   * @var array<string, string>
-   */
-  protected $casts = [
-    'email_verified_at' => 'datetime',
-    'password' => 'hashed',
-  ];
+   public function getAuthPassword()
+    {
+        return $this->contrasena;
+    }
 }

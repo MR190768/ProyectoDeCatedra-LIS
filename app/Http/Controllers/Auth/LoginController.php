@@ -1,63 +1,57 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
 
 class LoginController extends Controller
 {
+  // Método para redirigir al usuario a Google
   public function redirectToGoogle()
   {
     return Socialite::driver('google')->redirect();
   }
 
+  // Método para manejar la devolución del login con Google
   public function handleGoogleCallback()
   {
-    try {
-      $googleUser = Socialite::driver('google')->user();
+      try {
+          $googleUser = Socialite::driver('google')->user();
 
-      // Buscar al usuario en la base de datos por el correo
-      $user = User::where('email', $googleUser->getEmail())->first();
+          // Buscar al usuario en la base de datos por el correo
+          $user = User::where('email', $googleUser->getEmail())->first();
 
-      if ($user) {
-        // Si el usuario existe, iniciar sesión
-        Auth::login($user);
-        return redirect()->route('inicio')->with('success', 'Inicio de sesión exitoso con Google.');
-      } else {
-        // Si el usuario no existe, redirigir al registro o mostrar un error
-        return redirect()->route('login')->with('error', 'No se encontró una cuenta asociada a este correo. Por favor, regístrate.');
+          if ($user) {
+              $user->google_id = $googleUser->getId();
+              $user->save();
+
+              Auth::login($user);
+
+              return redirect()->route('inicio')->with('success', 'Inicio de sesión exitoso con Google.');
+          } else {
+              // Si el usuario no existe, registrarlo con el Google ID
+              $user = User::create([
+                  'nombres' => $googleUser->getName(),
+                  'apellidos' => '',
+                  'email' => $googleUser->getEmail(),
+                  'contrasena' => bcrypt(Str::random(16)), 
+                  'google_id' => $googleUser->getId(),
+                  'tipo_usuario' => 'usuario',
+              ]);
+
+              Auth::login($user);
+
+              return redirect()->route('inicio')->with('success', 'Registro exitoso con Google.');
+          }
+      } catch (\Exception $e) {
+          return redirect()->route('login')->with('error', 'Hubo un problema al iniciar sesión con Google.');
       }
-    } catch (\Exception $e) {
-      return redirect()->route('login')->with('error', 'Hubo un problema al iniciar sesión con Google.');
-    }
-  }
-  public function login(Request $request)
-  {
-    // Validar los datos del formulario
-    $credentials = $request->validate([
-      'email' => 'required|email',
-      'password' => 'required|min:8',
-    ]);
-
-    if (Auth::attempt($credentials, $request->remember)) {
-      return redirect()->route('inicio')->with('success', 'Inicio de sesión exitoso.');
-    }
-
-    // Si falla, redirige de vuelta con un mensaje de error
-    return back()->withErrors([
-      'email' => 'Las credenciales no coinciden con nuestros registros.',
-    ])->withInput();
   }
 
-  public function logout(Request $request)
-  {
-    // Cerrar sesión
-    Auth::logout();
-
-    // Redirigir al login
-    return redirect()->route('login')->with('success', 'Sesión cerrada correctamente.');
-  }
 }

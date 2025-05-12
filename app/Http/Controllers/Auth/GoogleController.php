@@ -1,4 +1,6 @@
 <?php
+
+/*
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -14,29 +16,37 @@ class GoogleController extends Controller
   }
 
   public function handleGoogleCallback()
-  {
+{
     try {
-      $googleUser = Socialite::driver('google')
-        ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
-        ->user();
+        $googleUser = Socialite::driver('google')
+            ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
+            ->user();
 
-      // Buscar o crear el usuario en la base de datos
-      $user = User::firstOrCreate(
-        ['email' => $googleUser->getEmail()], // Buscar por correo
-        [
-          'name' => $googleUser->getName(),
-          'google_id' => $googleUser->getId(), // Guarda el ID de Google
-          'password' => bcrypt('google'), // Contraseña mock
-        ]
-      );
+        // Buscar si ya existe el usuario
+        $user = User::where('email', $googleUser->getEmail())->first();
 
-      // Iniciar sesión al usuario
-      Auth::login($user);
+        if (!$user) {
+            // Crear nuevo usuario con los campos requeridos
+            $user = new User();
+            $user->nombres = $googleUser->user['given_name'] ?? $googleUser->getName();
+            $user->apellidos = $googleUser->user['family_name'] ?? '-';
+            $user->email = $googleUser->getEmail();
+            $user->google_id = $googleUser->getId();
+            $user->contrasena = bcrypt('google'); // contraseña dummy
+            $user->tipo_usuario = 'usuario'; // si es obligatorio
+            $user->save();
+        }
 
-      // Redirigir al dashboard
-      return redirect()->route('dashboard')->with('success', 'Inicio de sesión exitoso con Google.');
+        Auth::login($user);
+
+        return redirect()->route('repositorio')->with('success', 'Inicio de sesión exitoso con Google.');
+
     } catch (\Exception $e) {
-      return redirect()->route('login')->with('error', 'Hubo un problema al iniciar sesión con Google.');
+        \Log::error('Google login error: ' . $e->getMessage());
+        return redirect()->route('login')->with('error', 'Hubo un problema al iniciar sesión con Google.');
     }
-  }
 }
+
+}
+
+*/

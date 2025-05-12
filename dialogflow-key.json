@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "legalfacil-gnou",
+  "private_key_id": "745b37b4058f275be6b0cd63c27622737fe1579d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCQhyQdpYwXEL3l\n9F3XtieTwICoMqojT8wGLGcYZho9/0SWu1lQNfHH31HLOzhemcD/AbPqSrg5CHAh\nHfzbJz/tJjEirxQSd+CeUb3HTN9v8SSfQZ/NUhXaCYz0FhGm4MbbPpvztCVOqYmZ\nIkq3fnvzQLm7xUm3yO4REpkw86+DcJeLQsHTAJ/lEw48VZPldt7F3NS3EF1fxPwD\nG7OkW8J9PpnA2rW6fWJCHF9rO9Aa20y+NBqLngO6FYTO7s2pjpGhPlJWnlHN++zA\nQNM4zeFv1z/bu6v8IUduOn+r8AM+lLR3Rcq/KaNVxiL+e4Aj2/Lng02cDEPyE3eV\nBrVzUv8zAgMBAAECggEAPQ/r0V7FPmWDZemF0IKUXBeEBAxL19l6AM23zRYuVi1I\npEqJZJs2CNUwcKYXndhmMxdcFUv2Y5pODZ/m2gzONHrjXZ0M5PSjASDWBqNS76+5\nYlPOmWfp9ZH9bI76bEAhpDXim+drr71vdjSHztjws4iQMGYdTDnnY20xLf53FBfW\nDlWYgxDyPvlDyjLPGBbKPcYRY43QyT92uuc38EgizaeRJ2mm/Z32qR4+H4e013KC\nl5uHcddweUTKLTVdmooHHbJEYetD9HeYP6uNgAo6awm+d1EAGs5u98I7A9EOhvpr\nw+nbwjxz6hcpSUIE6l4/nzkWxmHt7sIL43Czs7jE0QKBgQDL8iB3rJ9htFPhc+Iv\n/t+m5jPysRE7NEg0jnnKuAXNc7KIs4MVRw1dVO//JgsLaCsC489a6KDXDqLH6pHw\nuzYqsMEIf/b9JzttIAaK3xiTyLD0q0TUHQ/dw0PPTK7GoooVpIdeuOZA7ZqfxsXx\n0VebSaMEjK4TOB4jE0PKDeiqyQKBgQC1aqHOQOHyhC7hwEgI/9wfTZPBXMYAiLLg\nAiUyt26a4slPltWq57ghx/Of6NQ8R0xfGSkTy6SI1QEm9P2Pxx6vcg/ubRBAFR7H\nLLvubpZROCCmNhAOfJH5ZbjNJNAkW68G8Yj1PvuSpSmDFZTASnsm+xLsXBvVBc8a\nYChZ4sMcGwKBgQCQguLqqdDNxJ9jM1/krm7/rkLFBx60mtlHFGXMdRT3fbHWF40c\nuJoJtjPQ0b4luQwxIgc93XSKrn49tkLvF1jMay58vV/gBbqgGn9IS8j4fs6Ur/83\nZdhmRQR5kVaOvYGm0ExznATboQFdkdWVAcdX65etk5mNWMhSBkaUl8JzsQKBgQCs\n0v18AGF/aB9FXqkBMcWgaIYG4fuajJ9jOYf4Tbjngn7m/Dlmy8KlI9faEbMGDaIa\nwlxYiFqhI9IqK5/WtYls+AtnRq0Bb11Xvyz1UpKOoxqvXLdlJZTmctpfS9+hk1ol\nEjo38B03MXJfd1Ky8QFrPCpl0sWM5TDL3qjyIE1g2wKBgFDGMvK0rsqGF55DaUI6\nTgL4ZM/jvGBvoRBZXzz7inyc8MEyuEQtJkXp09vikz1NmL3IvaXZP53QfRZzP6La\nCEOzll+/EBL17zfU+q0hXXT3XOZbbfHNVSoaT4X9J/BtBuWhbWA8vZ3T41rdpvYT\na+M6jQi/e4fnf7Zh39D0oJqE\n-----END PRIVATE KEY-----\n",
+  "client_email": "legalfacilv3@legalfacil-gnou.iam.gserviceaccount.com",
+  "client_id": "102634995762342641912",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/legalfacilv3%40legalfacil-gnou.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

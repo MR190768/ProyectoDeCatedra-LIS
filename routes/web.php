@@ -11,9 +11,10 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 use App\Http\Controllers\Auth\GoogleController;
-
+/*
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+*/
 //Vistas
 Route::get('/', function () {
   return view('users.index');

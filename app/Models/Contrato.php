@@ -9,6 +9,9 @@ class Contrato extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+
     protected $filliable = [
         'titulo',
         'descripcion',

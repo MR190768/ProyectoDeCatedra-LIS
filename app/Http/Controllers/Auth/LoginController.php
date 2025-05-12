@@ -54,4 +54,13 @@ class LoginController extends Controller
       }
   }
 
+  public function logout(Request $request)
+  {
+    // Cerrar sesión
+    Auth::logout();
+
+    // Redirigir al login
+    return redirect()->route('login')->with('success', 'Sesión cerrada correctamente.');
+  }
+
 }

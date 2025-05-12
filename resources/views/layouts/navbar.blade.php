@@ -44,8 +44,20 @@
                         <a href="{{route('contacto')}}" class="nav-item nav-link">Contacto</a>
                     </div>
                     <div class="ml-auto">
-                        <a href="{{route('login')}}" class="btn btn-outline-primary mr-2">Iniciar Sesión</a>
-                        <a href="{{route('registro')}}" class="btn btn-primary">Registrarse</a>
+                        @guest
+                            <!-- Mostrar solo si el usuario NO está autenticado -->
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary mr-2">Iniciar Sesión</a>
+                            <a href="{{ route('registro') }}" class="btn btn-primary">Registrarse</a>
+                        @endguest
+
+                        @auth
+                            <!-- Mostrar solo si el usuario está autenticado -->
+                            <span class="mr-2">Hola, {{ Auth::user()->nombres }}</span>
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger">Cerrar Sesión</button>
+                            </form>
+                        @endauth
                     </div>
                 </div>
             </nav>

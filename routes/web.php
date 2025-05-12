@@ -52,7 +52,7 @@ Route::post('/contrato/generar', [ContratoController::class, 'generar'])->name('
 // ====================
 
 
-//Ruta para el cahtbot
+//Ruta para el chatbot
 Route::middleware('auth')->match(['get', 'post'], 'chat/botman', function () {
 $chat = new chat();
 $chat->startConversacion();

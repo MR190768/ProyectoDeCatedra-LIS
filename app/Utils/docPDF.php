@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Storage;
 
 class docPDF{
 
+    /**
+     * Crea un PDF a partir de una plantilla y datos
+     *
+     *  $datos Datos a incluir en el PDF
+     *  $plantilla Nombre de la plantilla a usar
+     * return Nombre del archivo PDF creado
+     */
     public static function crearPDF($datos,$plantilla){
      $mes=[
         'mes',

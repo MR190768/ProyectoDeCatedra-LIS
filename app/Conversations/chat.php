@@ -10,6 +10,12 @@ use App\Conversations\prueba;
 class chat{
     public $config = [];
 
+    //funcion para inciar la conversacion, 
+    //se carga el driver de web y se crea el botman
+    //se carga el middleware de dialogflow
+    //se escucha al usuario y se responde
+    //dependiendo de la respuesta del Dialogflow
+    //se responde al usuario
     public function startConversacion() {
     DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
     $botman = BotManFactory::create($this->config, new LaravelCache());

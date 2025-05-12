@@ -63,3 +63,12 @@ $chat->startConversacion();
 Route::middleware('auth')->get('/perfil', [AdminController::class, 'perfil'])->name('perfil');
 
 Route::middleware('auth')->get('/historial-descargas', [AdminController::class, 'index'])->name('historial.descargas');
+
+Route::middleware(['auth', 'admin'])->group(function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::post('/admin/modificar-rol/{id}', [AdminController::class, 'modificarRol'])->name('admin.modificarRol');
+    Route::post('/admin/agregar-categoria', [AdminController::class, 'agregarCategoria'])->name('admin.agregarCategoria');
+    Route::post('/admin/modificar-categoria/{id}', [AdminController::class, 'modificarCategoria'])->name('admin.modificarCategoria');
+    Route::post('/admin/agregar-contrato', [AdminController::class, 'agregarContrato'])->name('admin.agregarContrato');
+    Route::post('/admin/modificar-contrato/{id}', [AdminController::class, 'modificarContrato'])->name('admin.modificarContrato');
+});

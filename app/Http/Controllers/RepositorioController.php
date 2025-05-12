@@ -45,7 +45,6 @@ class RepositorioController extends Controller
 
     public function generarDocumento(Request $request)
 {
-    // Valida los datos que recibes del formulario
     $request->validate([
         'juzgado' => 'required|string',
         'imputado' => 'required|string',
@@ -54,24 +53,18 @@ class RepositorioController extends Controller
         'fecha' => 'required|date',
     ]);
 
-    // Recoge los datos
     $juzgado = $request->input('juzgado');
     $imputado = $request->input('imputado');
     $abogado = $request->input('abogado');
     $nit = $request->input('nit');
     $fecha = $request->input('fecha');
 
-    // Aquí puedes implementar la lógica para generar el documento, por ejemplo, crear un PDF o un archivo HTML
-    // Guardar el archivo en el servidor, enviar por correo, etc.
 
-    // Por ejemplo, aquí estamos generando un documento HTML simple
     $content = view('modelos.modeloDePoderImputados', compact('juzgado', 'imputado', 'abogado', 'nit', 'fecha'))->render();
 
-    // Guarda el archivo en el servidor
     $filePath = 'contratos/poder_legal_' . time() . '.html';
     file_put_contents(storage_path('app/public/' . $filePath), $content);
 
-    // Devuelve una respuesta indicando que el archivo se generó con éxito
     return response()->json(['message' => 'Documento generado correctamente', 'file_path' => $filePath]);
 }
 

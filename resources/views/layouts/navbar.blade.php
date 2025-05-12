@@ -50,7 +50,7 @@
                                     {{ Auth::user()->nombres }}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                    @if (Auth::user()->rol === 'admin')
+                                    @if (Auth::user()->tipo_usuario === 'admin')
                                         <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Panel Admin</a>
                                     @else
                                         <a class="dropdown-item" href="{{ route('perfil') }}">Ver Perfil</a>

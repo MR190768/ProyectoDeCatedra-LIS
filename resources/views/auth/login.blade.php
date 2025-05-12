@@ -97,9 +97,9 @@
             <!-- Contraseña -->
             <div class="form-group mb-4">
               <label class="form-label text-primary"><i class="fas fa-lock mr-2"></i>Contraseña</label>
-              <input type="password" name="password" class="form-control form-input py-3" placeholder="••••••••"
+              <input type="password" name="contrasena" class="form-control form-input py-3" placeholder="••••••••"
                 required>
-              @error('password')
+              @error('contrasena')
           <small class="text-danger">{{ $message }}</small>
         @enderror
             </div>
@@ -120,6 +120,13 @@
           <a href="{{ route('auth.google') }}" class="btn btn-danger btn-block py-3 mb-4">
             <i class="fab fa-google mr-2"></i> Iniciar sesión con Google
           </a>
+
+          <!-- Enlace de registro -->
+          <div class="text-center mt-4">
+            <p class="text-muted">¿No tienes cuenta? <a href="{{ route('registro') }}" class="text-primary">Regístrate
+                aquí</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

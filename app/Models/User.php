@@ -20,13 +20,13 @@ class User extends Authenticatable
    * @var array<int, string>
    */
   protected $fillable = [
-      'nombres',
-      'apellidos',
-      'email',
-      'contrasena',
-      'personal_path',
-      'tipo_usuario',
-      'google_id'
+    'nombres',
+    'apellidos',
+    'email',
+    'google_id',
+    'contrasena',
+    'personal_path',
+    'tipo_usuario',
   ];
 
   /**
@@ -38,8 +38,8 @@ class User extends Authenticatable
     'contrasena',
   ];
 
-   public function getAuthPassword()
-    {
-        return $this->contrasena;
-    }
+  public function getAuthPassword()
+  {
+    return $this->contrasena;
+  }
 }

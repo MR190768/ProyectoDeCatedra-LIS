@@ -80,12 +80,22 @@
 
           <form action="{{ route('register.store') }}" method="POST">
             @csrf
-            <!-- Nombre Completo -->
+            <!-- Nombres -->
             <div class="form-group mb-4">
-              <label class="form-label text-primary"><i class="fas fa-user-tie mr-2"></i>Nombre Completo</label>
-              <input type="text" name="name" class="form-control form-input py-3" placeholder="Ej: Juan Pérez"
-                value="{{ old('name') }}" required>
-              @error('name')
+              <label class="form-label text-primary"><i class="fas fa-user-tie mr-2"></i>Nombres</label>
+              <input type="text" name="nombres" class="form-control form-input py-3" placeholder="Ej: Juan"
+                value="{{ old('nombres') }}" required>
+              @error('nombres')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
+            </div>
+
+            <!-- Apellidos -->
+            <div class="form-group mb-4">
+              <label class="form-label text-primary"><i class="fas fa-user-tie mr-2"></i>Apellidos</label>
+              <input type="text" name="apellidos" class="form-control form-input py-3" placeholder="Ej: Pérez"
+                value="{{ old('apellidos') }}" required>
+              @error('apellidos')
           <small class="text-danger">{{ $message }}</small>
         @enderror
             </div>
@@ -103,9 +113,9 @@
             <!-- Contraseña -->
             <div class="form-group mb-4">
               <label class="form-label text-primary"><i class="fas fa-lock mr-2"></i>Contraseña</label>
-              <input type="password" name="password" class="form-control form-input py-3" placeholder="••••••••"
+              <input type="password" name="contrasena" class="form-control form-input py-3" placeholder="••••••••"
                 required>
-              @error('password')
+              @error('contrasena')
           <small class="text-danger">{{ $message }}</small>
         @enderror
             </div>
@@ -113,8 +123,18 @@
             <!-- Confirmar Contraseña -->
             <div class="form-group mb-4">
               <label class="form-label text-primary"><i class="fas fa-lock mr-2"></i>Confirmar Contraseña</label>
-              <input type="password" name="password_confirmation" class="form-control form-input py-3"
+              <input type="password" name="contrasena_confirmation" class="form-control form-input py-3"
                 placeholder="••••••••" required>
+            </div>
+
+            <!-- Ruta Personal -->
+            <div class="form-group mb-4">
+              <label class="form-label text-primary"><i class="fas fa-folder mr-2"></i>Ruta Personal</label>
+              <input type="text" name="personal_path" class="form-control form-input py-3"
+                placeholder="Ej: /mi/carpeta/personal" value="{{ old('personal_path') }}" required>
+              @error('personal_path')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
             </div>
 
             <!-- Términos -->
@@ -132,6 +152,7 @@
               <i class="fas fa-user-plus mr-2"></i>Registrarse
             </button>
           </form>
+
 
           <a href="{{ route('auth.google') }}" class="btn btn-danger btn-block py-3 mb-4">
             <i class="fab fa-google mr-2"></i> Registrarse con Google

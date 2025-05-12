@@ -17,7 +17,8 @@ class RegisterController extends Controller
       'nombres' => 'required|string|max:255',
       'apellidos' => 'required|string|max:255',
       'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|min:8|confirmed',
+      'contrasena' => 'required|string|min:8|confirmed',
+      'personal_path' => 'required|string|max:255',
     ]);
 
     // Si falla la validación, redirigir con los errores
@@ -34,7 +35,8 @@ class RegisterController extends Controller
         'nombres' => $request->nombres,
         'apellidos' => $request->apellidos,
         'email' => $request->email,
-        'contrasena' => Hash::make($request->password), // Asegúrate de que sea una contraseña hash
+        'contrasena' => Hash::make($request->contrasena),
+        'personal_path' => $request->personal_path,
         'tipo_usuario' => 'usuario',  // Por defecto 'usuario', o puedes cambiarlo si es admin
       ]);
 

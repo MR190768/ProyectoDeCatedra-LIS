@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\RepositorioController;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,7 @@ Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallba
 
 Route::get('/repository', [RepositorioController::class, 'index'])->name('repositorio');
 
-Route::get('repositoriy/categoria/{id}', [RepositorioController::class, 'show'])->name('repositorio.categoria');
+Route::get('repository/categoria/{id}', [RepositorioController::class, 'show'])->name('repositorio.categoria');
 
 Route::post('/contrato/generar', [ContratoController::class, 'generar'])->name('contrato.generar');
 
@@ -59,7 +60,6 @@ $chat->startConversacion();
 
 })->name('chatbot');
 
-Route::middleware('auth')->get('/perfil', function () {
-    return view('users.perfil');
-})->name('perfil');
+Route::middleware('auth')->get('/perfil', [AdminController::class, 'perfil'])->name('perfil');
 
+Route::middleware('auth')->get('/historial-descargas', [AdminController::class, 'index'])->name('historial.descargas');

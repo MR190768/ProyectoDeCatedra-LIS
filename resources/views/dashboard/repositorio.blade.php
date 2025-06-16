@@ -73,15 +73,22 @@
                                     <h5 class="card-title">{{ $contrato->titulo }}</h5>
                                     <p class="card-text text-muted small">{{ $contrato->descripcion }}</p>
                                 </div>
-                                <button class="btn btn-primary btn-sm btn-block generar-contrato"
-                                    data-id="{{ $contrato->id }}"
-                                    data-titulo="{{ $contrato->titulo }}"
-                                    data-tipo="{{ $contrato->titulo }}"  {{-- nuevo --}}
-                                    data-toggle="modal"
-                                    data-target="#formModal">
-                                    <i class="fa fa-magic mr-2"></i>Generar Documento
-                                </button>
+                                @auth
+                                    <button class="btn btn-primary btn-sm btn-block generar-contrato"
+                                        data-id="{{ $contrato->id }}"
+                                        data-titulo="{{ $contrato->titulo }}"
+                                        data-tipo="{{ $contrato->titulo }}"  {{-- nuevo --}}
+                                        data-toggle="modal"
+                                        data-target="#formModal">
+                                        <i class="fa fa-magic mr-2"></i>Generar Documento
+                                    </button>
+                                @endauth
+                                @guest
+                                    <a href="{{route('login')}}"  class="btn btn-primary btn-sm btn-block generar-contrato">
+                                        Iniciar sesión
+                                    </a>
 
+                                @endguest
                             </div>
                         </div>
                     @empty
